@@ -35,7 +35,7 @@ dependencies {
 }
 
 ext {
-    archivesBaseName = 'dogecoin-wallet'
+    archivesBaseName = 'artiqox-wallet'
 }
 
 android {
@@ -50,8 +50,8 @@ android {
     defaultConfig {
         generatedDensities = ['hdpi', 'xhdpi']
         applicationId 'de.langerhans.wallet'
-        versionCode 311
-        versionName '3.1.1'
+        versionCode 112
+        versionName '1.1.2'
         minSdkVersion 16
         targetSdkVersion 26
         vectorDrawables.useSupportLibrary = true
@@ -100,8 +100,6 @@ android {
         exclude 'com/google/thirdparty/publicsuffix/PublicSuffixType.gwt.xml'
         exclude 'org/bitcoinj/crypto/mnemonic/wordlist/english.txt'
         exclude 'org/bitcoinj/crypto/cacerts'
-        exclude 'org.bitcoin.production.checkpoints.txt'
-        exclude 'org.bitcoin.test.checkpoints.txt'
     }
 }
 /*
@@ -155,11 +153,11 @@ class LangUpdater {
         String res = s
         // Do some specifics first
         res = res.replaceAll("bitcoinj", "libdohj")
-        res = res.replaceAll("bitboy", "dogecoin.com")
+        res = res.replaceAll("bitboy", "artiqox.com")
 
         // Esperanto specifics
-        res = res.replaceAll("Bitmon", "Dogemon")
-        res = res.replaceAll("bitmon", "dogemon")
+        res = res.replaceAll("Bitmon", "Artimon")
+        res = res.replaceAll("bitmon", "artimon")
 
         // Japanese specifics
         res = res.replaceAll("ビット", "ドージ")
@@ -168,9 +166,9 @@ class LangUpdater {
         res = res.replaceAll("比特", "狗狗")
 
         // And the rest
-        res = res.replaceAll("BTC", "DOGE")
-        res = res.replaceAll("bitcoin", "dogecoin")
-        res = res.replaceAll("Bitcoin", "Dogecoin")
+        res = res.replaceAll("BTC", "AIQ")
+        res = res.replaceAll("bitcoin", "artiqox")
+        res = res.replaceAll("Bitcoin", "Artiqox")
 
         return res;
     }

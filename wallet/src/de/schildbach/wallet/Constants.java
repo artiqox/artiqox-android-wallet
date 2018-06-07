@@ -23,8 +23,8 @@ import java.util.concurrent.TimeUnit;
 import org.bitcoinj.core.Context;
 import org.bitcoinj.core.NetworkParameters;
 import org.bitcoinj.utils.MonetaryFormat;
-import org.libdohj.params.AbstractDogecoinParams;
-import org.libdohj.params.DogecoinMainNetParams;
+import org.libdohj.params.AbstractArtiqoxParams;
+import org.libdohj.params.ArtiqoxMainNetParams;
 import org.libdohj.params.DogecoinTestNet3Params;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +39,7 @@ import de.schildbach.wallet_test.BuildConfig;
 import android.os.Build;
 import android.os.Environment;
 import android.text.format.DateUtils;
+import android.util.Log;
 
 /**
  * @author Andreas Schildbach
@@ -47,7 +48,7 @@ public final class Constants {
     public static final boolean TEST = BuildConfig.FLAVOR.equals("_testnet");
 
     /** Network this wallet is on (e.g. testnet or mainnet). */
-    public static final NetworkParameters NETWORK_PARAMETERS = TEST ? DogecoinTestNet3Params.get() : DogecoinMainNetParams.get();
+    public static final NetworkParameters NETWORK_PARAMETERS = TEST ? DogecoinTestNet3Params.get() : ArtiqoxMainNetParams.get();
 
     /** Bitcoinj global context. */
     public static final Context CONTEXT = new Context(NETWORK_PARAMETERS);
@@ -62,7 +63,7 @@ public final class Constants {
     public static final boolean ENABLE_BROWSE = true;
 
     public final static class Files {
-        private static final String FILENAME_NETWORK_SUFFIX = NETWORK_PARAMETERS.getId().equals(AbstractDogecoinParams.ID_DOGE_MAINNET) ? "" : "-testnet";
+        private static final String FILENAME_NETWORK_SUFFIX = NETWORK_PARAMETERS.getId().equals(AbstractArtiqoxParams.ID_ARTI_MAINNET) ? "" : "-testnet";
 
         /** Filename of the wallet. */
         public static final String WALLET_FILENAME_PROTOBUF = "wallet-protobuf" + FILENAME_NETWORK_SUFFIX;
@@ -110,23 +111,21 @@ public final class Constants {
     public static final long BACKUP_MAX_CHARS = 10000000;
 
     /** Base URL for browsing transactions, blocks or addresses. */
-    private static final String EXPLORE_BASE_URL_TX_PROD = "https://chain.so/tx/DOGE/";
+    private static final String EXPLORE_BASE_URL_TX_PROD = "http://explorer.artiqox.de:2750/tx/";
     private static final String EXPLORE_BASE_URL_TX_TEST = "https://chain.so/tx/DOGETEST/";
-    private static final String EXPLORE_BASE_URL_ADDR_PROD = "https://chain.so/address/DOGE/";
+    private static final String EXPLORE_BASE_URL_ADDR_PROD = "http://explorer.artiqox.de:2750/address/";
     private static final String EXPLORE_BASE_URL_ADDR_TEST = "https://chain.so/address/DOGETEST/";
-    private static final String EXPLORE_BASE_URL_BLOCK_PROD = "https://chain.so/block/DOGE/";
+    private static final String EXPLORE_BASE_URL_BLOCK_PROD = "http://explorer.artiqox.de:2750/block/";
     private static final String EXPLORE_BASE_URL_BLOCK_TEST = "https://chain.so/block/DOGETEST/";
     public static final String EXPLORE_BASE_URL_TX = TEST ? EXPLORE_BASE_URL_TX_TEST  : EXPLORE_BASE_URL_TX_PROD;
     public static final String EXPLORE_BASE_URL_ADDR = TEST ? EXPLORE_BASE_URL_ADDR_TEST : EXPLORE_BASE_URL_ADDR_PROD;
     public static final String EXPLORE_BASE_URL_BLOCK = TEST ? EXPLORE_BASE_URL_BLOCK_TEST : EXPLORE_BASE_URL_BLOCK_PROD;
 
-    public static final String DOGECHAIN_API_URL = "https://dogechain.info/api/v1/unspent/";
-    public static final String CHAINSO_API_URL = "https://chain.so/api/v2/lite/unspent/DOGE/";
     public static final String BLOCKCYPHER_API_URL = "https://api.blockcypher.com/v1/doge/main/addrs/";
 
     /** Currency code for the wallet name resolver. */
     public static final String WALLET_NAME_CURRENCY_CODE = NETWORK_PARAMETERS.getId()
-            .equals(NetworkParameters.ID_MAINNET) ? "doge" : "doget";
+            .equals(NetworkParameters.ID_MAINNET) ? "arti" : "artit";
 
     /** URL to fetch version alerts from. */
     public static final HttpUrl VERSION_URL = HttpUrl.parse("https://maxkeller.io/version");
@@ -134,7 +133,7 @@ public final class Constants {
     public static final HttpUrl DYNAMIC_FEES_URL = HttpUrl.parse("https://wallet.schildbach.de/fees");
 
     /** MIME type used for transmitting single transactions. */
-    public static final String MIMETYPE_TRANSACTION = "application/x-dogetx";
+    public static final String MIMETYPE_TRANSACTION = "application/x-artitx";
 
     /** MIME type used for transmitting wallet backups. */
     public static final String MIMETYPE_WALLET_BACKUP = "application/x-dogecoin-wallet-backup";
@@ -143,13 +142,13 @@ public final class Constants {
     public static final int MAX_NUM_CONFIRMATIONS = 7;
 
     /** User-agent to use for network access. */
-    public static final String USER_AGENT = "Dogecoin Wallet";
+    public static final String USER_AGENT = "Artiqox Wallet";
 
     /** Default currency to use if all default mechanisms fail. */
     public static final String DEFAULT_EXCHANGE_CURRENCY = "USD";
 
     /** Donation address for tip/donate action. */
-    public static final String DONATION_ADDRESS = NETWORK_PARAMETERS.getId().equals(AbstractDogecoinParams.ID_DOGE_MAINNET)
+    public static final String DONATION_ADDRESS = NETWORK_PARAMETERS.getId().equals(AbstractArtiqoxParams.ID_ARTI_MAINNET)
             ? "DDa3MCfbUABVsxJzhw5j7HttHLXFYGQbZS" : null;
 
     /** Recipient e-mail address for reports. */
